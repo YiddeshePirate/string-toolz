@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,30 +24,29 @@ char *search_and_replace(char *ara, char bef, char aft)
 
 // #endregion
 
-// #region func split by spaces. will change to delimiter
+// #region func split by spaces. will change to delimiter must use array not pointer!!!
 
-char **produce(char *string)
+char** split(char *string)
 {
 
+   printf("\t\tline 32\n");
    int size_count = 0;
    char **split_array = malloc(1 * sizeof(char *));
+   printf("\t\tline 35\n");
    char *token = strtok(string, " ");
+   printf("\t\tline 37\n");
    split_array[0] = token;
    size_count++;
+   printf("\t\tline 39\n");
    while (token != NULL)
    {
-      // puts("hello");
       token = strtok(NULL, " ");
-      puts("1");
       size_count++;
-      puts("2");
       split_array = realloc(split_array, size_count * (sizeof(char *)));
-      printf("sz: %d\ntoken: %s\n", size_count, token);
-      puts("3");
+      printf("\t\tsz: %d\n\t\ttoken: %s\n", size_count, token);
       split_array[size_count - 1] = token;
-      puts("4");
-      puts("5");
    }
+   return split_array;
 }
 // #endregion
 
@@ -57,8 +55,10 @@ char **produce(char *string)
 // #region
 int main(void)
 {
-   char hello[] = "Hello, World!!!";
-   char *spl = strtok(hello, " ");
-   puts(spl);
+
+   char hel_phrase[] = "hello world";
+   char** hello = split(hel_phrase);
+   printf("%s\n", hello[0]);
+   printf("%s\n", hello[1]);
 }
 // #endregion
